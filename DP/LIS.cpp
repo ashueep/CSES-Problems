@@ -2,6 +2,7 @@
 Problem : https://cses.fi/problemset/task/1145 
 */
 //O(n2) solution.
+//searching for O(n).
 
 #include<bits/stdc++.h>
 using namespace std;
