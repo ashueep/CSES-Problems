@@ -16,7 +16,7 @@ using namespace std;
 #define minv(x)          *min_element(x)
 #define mkvec(type,a,n)  vector<type> a(n)
 
-const ll ARR = 1e5;
+const ll ARR = 1e6;
 const ll INF = 1e9;
 const ll mod = 1e9+7;
 
@@ -31,12 +31,43 @@ void IO()
 
 void solve(){
 
+    ll n;
+    cin >> n;
+    if((n*(n+1))%4 != 0){
+        cout << "NO\n";
+        return;
+    }
+    cout << "YES\n";
+    vi v;
+    gof v.pb(i+1);
+    ll hp[ARR+2]; 
+    memset(hp,false,n+1);
+    
+    int i = 0, j = n-1;
+    ll sum = (n*(n+1))/4;
+    while(i < j && sum){
+        if(!hp[i]&&v[i] < sum){
+            sum -= v[i];
+            hp[i++] = true;
+        }
+        if(!hp[j]&&v[j]<sum){
+            sum -= v[j];
+            hp[j--] = true;
+        }
+    }
+
+    gof{
+        if(hp[i]) cout << v[i] << " ";
+    }
+    gof{
+        if(!hp[i]) cout << v[i] << " ";
+    }cout << "\n";
+
 }
 
 int main(){
-	IO();
+	
     ll t = 1;
-    cin >> t;
     while(t--) solve();
     return 0;
 }
