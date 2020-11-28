@@ -33,35 +33,41 @@ void solve(){
 
     ll n;
     cin >> n;
-    if((n*(n+1))%4 != 0){
+
+    if((n*(n+1))%4!=0){
         cout << "NO\n";
         return;
     }
-    cout << "YES\n";
-    vi v;
-    gof v.pb(i+1);
-    ll hp[ARR+2]; 
-    memset(hp,false,n+1);
-    
-    int i = 0, j = n-1;
-    ll sum = (n*(n+1))/4;
-    while(i < j && sum){
-        if(!hp[i]&&v[i] < sum){
-            sum -= v[i];
-            hp[i++] = true;
-        }
-        if(!hp[j]&&v[j]<sum){
-            sum -= v[j];
-            hp[j--] = true;
-        }
+
+    if(n==3){
+        printf("YES\n1\n3\n2\n2 1\n");
+        return;
     }
 
-    gof{
-        if(hp[i]) cout << v[i] << " ";
+    vi s1,s2;
+
+    for1(i,1,n) s1.pb(i);
+    s2.pb(n);
+    ll ss2 = n;
+    ll ss1 = (n*(n-1))/2;
+    for(int i = n-1; i >= 0 ; i--){
+        ll d = (ss1 - ss2)/2;
+        if(d <= *(s1.end()-1)){
+            s1[d-1] = -1;
+            s2.pb(d);
+            break;
+        }
+        ll e = *(s1.end()-1);
+        s1.pop_back();
+        ss2+=e;
+        ss1-=e;
+        s2.pb(e);
     }
-    gof{
-        if(!hp[i]) cout << v[i] << " ";
-    }cout << "\n";
+    cout << "YES\n";
+    cout << s1.size() - 1 << "\n";
+    for(auto i : s1) if(i!=-1) cout << i << " ";
+    cout << "\n" <<s2.size() << "\n";
+    for(auto i : s2) cout << i << " ";
 
 }
 
