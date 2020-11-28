@@ -34,9 +34,9 @@ void solve(){
 }
 
 int main(){
-	IO();
+	//IO();
     ll t = 1;
-    cin >> t;
+    //cin >> t;
     while(t--) solve();
     return 0;
 }
