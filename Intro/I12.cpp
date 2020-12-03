@@ -1,5 +1,5 @@
 /*
-Problem : 
+Problem : https://cses.fi/problemset/result/1332735/ 
 */
 #include<bits/stdc++.h>
 using namespace std;
@@ -41,6 +41,26 @@ void solve(){
         hp[(int)(s[i] - 'A')]++;
     }
 
+    bool one = false;
+    char o;
+    for1(i,0,26){
+        if(hp[i]){
+            if(!one){
+                one = true;
+                o = char(i+'A');
+            }
+            else{
+                one = false;
+                break;
+            }
+        }
+    }
+
+    if(one){
+        for1(i,1,hp[int(o-'A')]+1) cout << o;
+        return;
+    }
+
     bool ok = true;
     char middle;
     for1(i,0,26){
@@ -61,18 +81,20 @@ void solve(){
     string ans = "";
 
     for1(i,0,26){
+        //cout << char(i + 'A') << " " <<hp[i] << "\n";
         if(!hp[i]) continue;
         if(hp[i]%2 == 0){
-            cout << hp[i] << " ";
-            for1(i,1,hp[i]/2 + 1){
-                
+            for1(j,1,hp[i]/2 + 1){
+
                 ans += char(i+'A');
             }
         }     
     }
     
     cout << ans;
-    cout << middle;
+    if(!ok){
+        for1(i,1,hp[(int)(middle - 'A')]+1) cout << middle;
+    }
     int m = ans.length();
     forr(i,m-1,0){
         cout << ans[i];
